@@ -1156,6 +1156,76 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
         story.append(Image(fig_sum, width=6.5*inch, height=1.7*inch))
         story.append(Paragraph("Figure 7: Executive Summary: Top 10 Batters and Bowlers Under Pressure (2022–2026).", styles["FigureCaption"]))
 
+    story.append(PageBreak())
+
+    # =========================================================================
+    # PAGE 14: APPENDIX - SQUAD-FIT & TACTICAL ROLE SUMMARY
+    # =========================================================================
+    story.append(Paragraph("12. Appendix: Squad-Fit & Tactical Role Summary", styles["SectionHeader"]))
+    story.append(Paragraph(
+        "<i>(Derived strictly from empirical pressure ratings; RR's current roster, retentions and auction budget are not present "
+        "in the competition dataset, so squad integration is evaluated specifically through tactical role and roster slot mechanics.)</i>",
+        styles["FigureCaption"]
+    ))
+    story.append(Spacer(1, 2))
+
+    # Batters squad fit
+    story.append(Paragraph("<b>12.1 Batters: Tactical Roles & Slot Allocation:</b>", styles["SubSectionHeader"]))
+    story.append(Paragraph(
+        "• <b>Roster Slot Mechanics:</b> The five recommended Indian batters (Sooryavanshi, Abhishek, Prabhsimran, Shreyas, Suryakumar) consume zero overseas slots, "
+        "preserving roster flexibility. The five overseas batters (David, Klaasen, Nissanka, Hendricks, Brook) compete directly for the four allowed overseas playing-XI spots.",
+        styles["ProfileBullet"]
+    ))
+
+    squad_fit_batters = [
+        ("1. Vaibhav Sooryavanshi (Indian)", "Highest composite score (2.46), 212.4 pressure SR. Has RR in team history (through IPL 2026); represents a retain-and-build top-order asset."),
+        ("2. Abhishek Sharma (Indian)", "Highest pressure volume (509 balls), 176.8 pressure SR. Adds a left-handed powerplay aggressor without using an overseas slot."),
+        ("3. Prabhsimran Singh (Indian)", "Resilience +0.281 (highest among top batters) and 74.1% match hit rate. Adds high-leverage scoring consistency at the top."),
+        ("4. Shreyas Iyer (Indian)", "430 pressure balls, 68.1% match hit rate under pressure. Adds an established middle-overs anchor under chase and collapse pressure."),
+        ("5. Tim David (Overseas)", "186.3 pressure SR across 333 pressure balls, 70.3% hit rate. Adds a specialist death-overs boundary finisher."),
+        ("6. Pathum Nissanka (Overseas)", "80.9% match hit rate (highest in pool), +0.215 resilience. Adds a dependable top-order anchor in steep chases."),
+        ("7. Reeza Hendricks (Overseas)", "171.5 pressure SR across 231 pressure balls, +0.229 resilience. Adds top-order boundary accumulation on a moderate sample."),
+        ("8. Suryakumar Yadav (Indian)", "594 pressure balls, 174.0 pressure SR, +0.263 post RV/b. Adds middle-overs volume; rank reflects tie density (P(Top-10) 24.4%)."),
+        ("9. Harry Brook (Overseas)", "156.5 pressure SR across 162 pressure balls, +0.157 resilience. Adds a middle-to-death overs boundary hitter on a modest sample."),
+        ("10. Heinrich Klaasen (Overseas)", "184.4 pressure SR across 317 pressure balls, +0.112 resilience. Adds a death-overs spin and pace power-hitting alternative to David.")
+    ]
+    for title, desc in squad_fit_batters:
+        story.append(Paragraph(f"• <b>{title}:</b> {desc}", styles["ProfileBullet"]))
+
+    story.append(Spacer(1, 3))
+
+    # Bowlers squad fit
+    story.append(Paragraph("<b>12.2 Bowlers: Tactical Roles & Slot Allocation:</b>", styles["SubSectionHeader"]))
+    story.append(Paragraph(
+        "• <b>Roster Slot Mechanics:</b> The four recommended Indian bowlers (Varun, Krunal, Chahal, Mayank) don't use an overseas slot. "
+        "The six overseas bowlers (Narine, Rashid, Nawaz, Overton, Santner, Hasaranga) cannot all play simultaneously under the four-overseas playing-XI limit, "
+        "so only a venue-dependent subset can be deployed.",
+        styles["ProfileBullet"]
+    ))
+
+    squad_fit_bowlers = [
+        ("1. Sunil Narine (Overseas)", "7.02 pressure economy across 416 legal pressure balls, 81.8% P(Top-10). Adds a defensive choke spinner who restricts scoring at all match phases."),
+        ("2. Rashid Khan (Overseas, ID 4722)", "604 legal pressure balls, 7.47 economy, +0.189 post RV/b. Adds high-volume leg-spin control in high-leverage middle overs."),
+        ("3. Varun Chakravarthy (Indian)", "7.81 economy across 520 legal pressure balls, +0.181 post RV/b. Adds an Indian mystery spinner without consuming an overseas slot."),
+        ("4. Mohammad Nawaz (Overseas)", "7.07 economy across 298 legal pressure balls, +0.171 post RV/b. Adds a defensive left-arm orthodox restrictor across powerplay and middle phases."),
+        ("5. Krunal Pandya (Indian)", "7.10 economy across 289 legal pressure balls, +0.107 resilience. Adds a left-arm spinner with powerplay and middle-overs run suppression."),
+        ("6. Jamie Overton (Overseas)", "6.26 economy across 68 legal pressure balls, +0.103 post RV/b. Low sample size (68 balls); serves as a high-upside pace all-rounder scouting pick."),
+        ("7. Yuzvendra Chahal (Indian)", "8.82 economy offset by 47 wickets in 602 pressure balls (12.81 SR, +0.27 wkt RV/b). Has RR in team history; adds an attacking wicket-taking leg-spinner."),
+        ("8. Mitchell Santner (Overseas)", "6.94 economy across 370 legal pressure balls, 65.3% match hit rate. Adds a disciplined finger-spin option on spin-friendly surfaces."),
+        ("9. Mayank Yadav (Indian)", "7.28 economy across 108 legal pressure balls, 21 matches. Low sample size (108 balls); serves as a high-upside domestic pace scouting pick."),
+        ("10. Wanindu Hasaranga (Overseas)", "8.61 economy across 455 legal pressure balls, +0.152 post RV/b. Has RR in team history; adds an attacking middle-overs wrist-spin wicket threat.")
+    ]
+    for title, desc in squad_fit_bowlers:
+        story.append(Paragraph(f"• <b>{title}:</b> {desc}", styles["ProfileBullet"]))
+
+    story.append(Spacer(1, 3))
+    story.append(build_callout(
+        "<b>Roster Constraints & Tactical Caveat:</b> Indian and overseas designations are inferred from national team representation. "
+        "IPL playing-XI regulations restrict teams to a maximum of four overseas players per match. Consequently, selecting multiple overseas candidates "
+        "requires tactical rotation based on venue dimensions, pitch characteristics, and squad balance.",
+        styles
+    ))
+
     # Build document
     doc.build(story, canvasmaker=NumberedCanvas)
     print(f"Successfully compiled {pdf_filename}!")
