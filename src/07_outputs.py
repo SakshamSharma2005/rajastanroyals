@@ -53,29 +53,29 @@ def generate_final_outputs(config):
 
     # Data-grounded RR Squad Fit Notes (strictly empirical, no reputation bias)
     rr_fit_batters = {
-        50284: "Current RR squad asset. High-leverage strike rate 212.4 vs baseline 223.1; positive resilience (+0.17 RV/ball) arises after context and opponent adjustments (facing frontline death bowlers vs baseline powerplay); ranks #1 in early and squeeze leverage.",
-        7216: "Aggressive Indian powerplay and middle-overs batter (Pressure SR 178.2, 74.1% match hit rate); +0.28 RV/ball resilience vs low-leverage baseline; 72.0% P(Top-10).",
-        6281: "High-impact Indian LH top-order batter (Pressure SR 176.8); strong volume (509 pressure balls); converts high-leverage powerplay opportunities (+0.38 posterior RV/ball); 68.2% P(Top-10).",
-        3647: "High-leverage middle-overs anchor under chase and collapse pressure (Pressure SR 167.8); +0.24 RV/ball resilience vs baseline; 68.1% match hit rate under pressure; 69.0% P(Top-10).",
-        6396: "Death-overs finisher (Pressure SR 186.3 across 333 pressure balls); +0.19 RV/ball resilience; excels in high required-run-rate chase scenarios; 59.2% P(Top-10).",
-        6931: "High-tempo overseas top-order batter (Pressure SR 143.8 across 567 pressure balls); strong consistency (80.9% match hit rate under pressure); +0.22 RV/ball resilience; 48.4% P(Top-10).",
-        768: "High-volume overseas top-order batter (Pressure SR 171.5); +0.23 RV/ball resilience; ranks top-15 across 3 alternate pressure definitions; 50.0% P(Top-10).",
-        1699: "High-volume middle-overs batter (594 pressure balls, Pressure SR 174.0); +0.26 posterior RV/ball level; situational boundary boundary access.",
-        6280: "Middle-to-death overs hitter (Pressure SR 156.5 across 162 pressure balls); +0.16 RV/ball resilience; ranks top-15 across 3 alternate pressure definitions; 47.4% P(Top-10).",
-        4260: "High-impact middle-and-death finisher (Pressure SR 184.4 across 317 pressure balls); +0.11 RV/ball resilience; ranks top-15 across 2 alternate pressure definitions; 38.2% P(Top-10)."
+        50284: "Has RR in his team history (through IPL 2026). High-leverage strike rate 212.4 vs baseline 223.1; positive resilience (+0.139 RV/ball) arises after context and opponent adjustments; ranks #1 in early and squeeze leverage; 75.8% P(Top-10).",
+        7216: "Indian powerplay and middle-overs batter (Pressure SR 178.2, 74.1% match hit rate); +0.281 RV/ball resilience vs low-leverage baseline; 72.0% P(Top-10).",
+        6281: "Indian LH top-order batter (Pressure SR 176.8 across 509 pressure balls); converts high-leverage powerplay opportunities (+0.382 posterior RV/ball); 68.2% P(Top-10).",
+        3647: "Middle-overs anchor under chase and collapse pressure (Pressure SR 167.8); +0.233 RV/ball resilience vs baseline; 68.1% match hit rate under pressure; 69.0% P(Top-10).",
+        6396: "Death-overs boundary hitter (Pressure SR 186.3 across 333 pressure balls); +0.172 RV/ball resilience; 70.3% match hit rate under pressure; 59.2% P(Top-10).",
+        6931: "Top-order anchor (Pressure SR 143.8 across 567 pressure balls); highest match hit rate in pool (80.9%); +0.215 RV/ball resilience; 48.4% P(Top-10).",
+        768: "Top-order batter (Pressure SR 171.5); +0.229 RV/ball resilience vs baseline; ranks top-15 across 3 alternate pressure definitions; 50.0% P(Top-10).",
+        1699: "Highest volume exposure (594 pressure balls, 2,659 total balls faced); maintains +0.263 posterior RV/ball level and 174.0 Pressure SR; 24.4% P(Top-10).",
+        6280: "Middle-to-death overs hitter (Pressure SR 156.5 across 162 pressure balls); +0.150 RV/ball resilience; ranks top-15 across 3 alternate pressure definitions; 47.4% P(Top-10).",
+        4260: "Death-overs boundary hitter (Pressure SR 184.4 across 317 pressure balls); +0.101 RV/ball resilience; ranks top-15 across 2 alternate pressure definitions; 38.2% P(Top-10)."
     }
 
     rr_fit_bowlers = {
-        781: "Defensive spin restrictor (Pressure Economy 7.02 across 416 legal pressure balls); ranks top-15 across 4 alternate pressure definitions; +0.22 posterior RV/ball; 81.8% P(Top-10).",
-        4722: "High-volume leg-spin choke bowler (Pressure Econ 7.47 across 604 legal pressure balls); +0.20 posterior RV/ball; 62.0% match hit rate under pressure; 49.8% P(Top-10).",
-        6256: "Mystery spin restrictor in middle and death overs (Pressure Econ 7.81 across 520 legal pressure balls); +0.19 posterior RV/ball; 49.8% P(Top-10).",
-        2490: "Defensive left-arm orthodox spinner (Pressure Econ 7.07 across 298 legal pressure balls); +0.18 posterior RV/ball; ranks top-15 across 3 alternate pressure definitions; 58.6% P(Top-10).",
-        4219: "Left-arm spin bowler with powerplay and middle-overs control (Pressure Econ 7.10 across 289 legal pressure balls); +0.14 posterior RV/ball and +0.11 resilience.",
-        2382: "High-impact pace-bowling all-rounder (Pressure Econ 6.26 across 68 legal pressure balls); +0.18 posterior RV/ball; ranks top-15 across 2 alternate pressure definitions; 47.2% P(Top-10).",
-        1612: "High-volume leg-spinner (Pressure Econ 8.82 across 602 legal pressure balls); 8.82 economy offset by taking 47 pressure wickets at 12.81 balls/wicket (+0.27 runs/ball dismissal value); +0.13 posterior RV/ball and +0.15 resilience.",
-        4101: "Economical finger spinner (Pressure Econ 6.94 across 370 legal pressure balls); +0.13 posterior RV/ball; 65.3% match hit rate under pressure; 30.4% P(Top-10).",
-        27960: "High-pace wicket-taker (Pressure Econ 7.28 across 108 legal pressure balls); +0.16 RV/ball resilience vs baseline; ranks top-15 across 3 alternate pressure definitions; 38.0% P(Top-10).",
-        4900: "Attacking leg-spinner (Pressure Econ 8.61 across 455 legal pressure balls); +0.16 posterior RV/ball; ranks top-15 across 1 alternate pressure definition; 24.6% P(Top-10)."
+        781: "Defensive spin restrictor (Pressure Economy 7.02 across 416 legal pressure balls); ranks top-15 across 4 alternate pressure definitions; +0.204 posterior RV/ball; 81.8% P(Top-10).",
+        4722: "High-volume leg-spin choke bowler (Pressure Econ 7.47 across 604 legal pressure balls); +0.189 posterior RV/ball; 62.0% match hit rate under pressure; 49.8% P(Top-10).",
+        6256: "Mystery spin restrictor in middle and death overs (Pressure Econ 7.81 across 520 legal pressure balls); +0.181 posterior RV/ball; 49.8% P(Top-10).",
+        2490: "Defensive left-arm orthodox spinner (Pressure Econ 7.07 across 298 legal pressure balls); +0.171 posterior RV/ball; ranks top-15 across 3 alternate pressure definitions; 58.6% P(Top-10).",
+        4219: "Left-arm spin bowler with powerplay and middle-overs control (Pressure Econ 7.10 across 289 legal pressure balls); +0.128 posterior RV/ball and +0.107 resilience; 35.2% P(Top-10).",
+        2382: "Pace-bowling all-rounder (Pressure Econ 6.26 across 68 legal pressure balls); +0.103 posterior RV/ball; 47.2% P(Top-10). Low-sample pick (68 legal pressure balls).",
+        1612: "Has RR in his team history (through IPL 2026). Conceded 8.82 economy, offset by 47 wickets in 602 legal pressure balls at 12.81 balls/wicket (+0.27 runs/ball dismissal value credit); +0.120 posterior RV/ball; 22.8% P(Top-10).",
+        4101: "Disciplined finger spinner (Pressure Econ 6.94 across 370 legal pressure balls); +0.127 posterior RV/ball; 65.3% match hit rate under pressure; 30.4% P(Top-10).",
+        27960: "Pace bowler (Pressure Econ 7.28 across 108 legal pressure balls, 469 legal balls across 21 matches); +0.154 resilience; 38.0% P(Top-10). Low-sample pick (108 legal pressure balls).",
+        4900: "Has RR in his team history (through IPL 2026). Attacking leg-spinner (Pressure Econ 8.61 across 455 legal pressure balls); +0.152 posterior RV/ball; 24.6% P(Top-10)."
     }
 
     bat_df["rr_auction_fit"] = bat_df["player_id"].map(rr_fit_batters).fillna("High-leverage situational batter.")

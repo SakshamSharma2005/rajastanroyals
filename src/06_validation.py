@@ -455,8 +455,9 @@ def run_sensitivity_grid(df, bat_ratings, bowl_ratings, config):
     base_bowl_top10 = set(bowl_ratings[bowl_ratings["is_eligible"]].head(10)["player_id"])
 
     scenarios = [
+        ("Published Baseline Composite", "base", 1.0, 0.5, (0.6, 0.2, 0.2), True),
+        ("Raw RV Rate (P-LI >= 1.50, Unshrunk)", "is_p_li_15", 1.0, 0.5, (0.6, 0.2, 0.2), True),
         ("P-LI >= 1.25", "is_p_li_125", 1.0, 0.5, (0.6, 0.2, 0.2), True),
-        ("P-LI >= 1.50 (Primary)", "is_p_li_15", 1.0, 0.5, (0.6, 0.2, 0.2), True),
         ("P-LI >= 1.75", "is_p_li_175", 1.0, 0.5, (0.6, 0.2, 0.2), True),
         ("P-LI >= 2.00", "is_p_li_20", 1.0, 0.5, (0.6, 0.2, 0.2), True),
         ("P-Chase", "is_p_chase", 1.0, 0.5, (0.6, 0.2, 0.2), True),
@@ -488,8 +489,10 @@ def run_sensitivity_grid(df, bat_ratings, bowl_ratings, config):
     for item in scenarios:
         name, press_col, gamma, assoc_wt, weights, use_recency = item
 
-        # Check if scenario is simply a weight re-weighting
-        if "Weights:" in name:
+        if name == "Published Baseline Composite":
+            score_b_el = bat_ratings.set_index("player_id").loc[list(el_bat), "composite_score"]
+            score_bw_el = bowl_ratings.set_index("player_id").loc[list(el_bowl), "composite_score"]
+        elif "Weights:" in name:
             sc_b = weights[0] * z_lvl_b + weights[1] * z_res_b + weights[2] * z_cons_b
             score_b_el = sc_b.loc[sc_b.index.isin(el_bat)]
 
