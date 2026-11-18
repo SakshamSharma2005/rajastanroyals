@@ -1,0 +1,36 @@
+======================================================================
+SupeRR Selector Season 2 - Round 1: Pressure Players Dropdown Picks
+======================================================================
+
+TOP 10 BATTERS UNDER PRESSURE (Select in Unstop Dropdowns Rank 1 -> 10):
+----------------------------------------------------------------------
+Rank 1: Vaibhav Sooryavanshi (Player ID: 50284, Indian) [Current RR Squad]
+Rank 2: Abhishek Sharma (Player ID: 6281, Indian)
+Rank 3: Prabhsimran Singh (Player ID: 7216, Indian)
+Rank 4: Shreyas Iyer (Player ID: 3647, Indian)
+Rank 5: Tim David (Player ID: 6396, Overseas)
+Rank 6: Pathum Nissanka (Player ID: 6931, Overseas)
+Rank 7: Reeza Hendricks (Player ID: 768, Overseas)
+Rank 8: Suryakumar Yadav (Player ID: 1699, Indian)
+Rank 9: Harry Brook (Player ID: 6280, Overseas)
+Rank 10: Heinrich Klaasen (Player ID: 4260, Overseas)
+
+======================================================================
+TOP 10 BOWLERS UNDER PRESSURE (Select in Unstop Dropdowns Rank 1 -> 10):
+----------------------------------------------------------------------
+Rank 1: Sunil Narine (Player ID: 781, Overseas)
+Rank 2: Rashid Khan (Afghanistan) (Player ID: 4722, Overseas) *IMPORTANT: Select Afghanistan / GT player ID 4722, not Nepal ID 20172
+Rank 3: Varun Chakravarthy (Player ID: 6256, Indian)
+Rank 4: Mohammad Nawaz (Player ID: 2490, Overseas)
+Rank 5: Krunal Pandya (Player ID: 4219, Indian)
+Rank 6: Jamie Overton (Player ID: 2382, Overseas)
+Rank 7: Yuzvendra Chahal (Player ID: 1612, Indian) [Current RR Squad]
+Rank 8: Mitchell Santner (Player ID: 4101, Overseas)
+Rank 9: Mayank Yadav (Player ID: 27960, Indian)
+Rank 10: Wanindu Hasaranga (Player ID: 4900, Overseas) [Current RR Squad]
+
+======================================================================
+DROPDOWN AMBIGUITY SAFETY NOTE:
+There are duplicate names in the dataset. For Rank 2 Bowler 'Rashid Khan', ensure
+selecting the Afghanistan/Gujarat Titans superstar (player_id 4722).
+======================================================================

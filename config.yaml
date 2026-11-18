@@ -1,0 +1,144 @@
+# SupeRR Selector S2 - Round 1 Pressure Players Pipeline Configuration
+
+seed: 42
+
+paths:
+  ball_by_ball: "ball_by_ball.csv"
+  matches: "matches.csv"
+  competitions: "competitions.csv"
+  teams: "teams.csv"
+  mapping: "competition_team_player_mapping.csv"
+  playing_eleven: "playing_eleven.csv"
+  output_dir: "outputs"
+  figures_dir: "outputs/figures"
+
+extras_run_values:
+  none: 0.0
+  wide: 1.0
+  Overstep: 1.0
+  legbyes: 1.5
+  byes: 1.5
+  other: 0.4
+  Penalty: 5.0
+
+illegal_extras:
+  - "wide"
+  - "Overstep"
+  - "other"
+
+bowler_charged_extras:
+  - "wide"
+  - "Overstep"
+
+bowler_dismissal_types:
+  - "Bowled"
+  - "Caught"
+  - "LBW"
+  - "Stump"
+  - "Hit Wicket"
+
+team_tiers:
+  ipl: 1.0
+  full_member: 1.0
+  associate: 0.5
+  a_team: 0.0
+
+full_members:
+  - "England"
+  - "West Indies"
+  - "India"
+  - "Australia"
+  - "Sri Lanka"
+  - "South Africa"
+  - "Bangladesh"
+  - "Zimbabwe"
+  - "Afghanistan"
+  - "Ireland"
+  - "New Zealand"
+  - "Pakistan"
+
+associates:
+  - "Hong Kong"
+  - "Netherlands"
+  - "United Arab Emirates"
+  - "Singapore"
+  - "Kuwait"
+  - "Scotland"
+  - "Canada"
+  - "United States Of America"
+  - "Oman"
+  - "Nepal"
+  - "Japan"
+
+a_team_comps:
+  - 2670  # Mens T20 Emerging Teams Asia Cup 2024
+  - 3289  # Asia Cup Rising Stars 2025
+
+wp_model:
+  chase:
+    max_depth: 4
+    learning_rate: 0.05
+    max_iter: 250
+    min_samples_leaf: 200
+    l2_regularization: 1.0
+    cv_splits: 5
+  inn1:
+    max_depth: 4
+    learning_rate: 0.05
+    max_iter: 250
+    min_samples_leaf: 200
+    l2_regularization: 1.0
+    cv_splits: 5
+
+pressure:
+  primary_threshold: 1.5
+  gamma: 1.0
+  min_clip: 0.25
+  max_clip: 4.0
+  p_chase:
+    max_balls_left: 48
+    min_wp: 0.20
+    max_wp: 0.80
+  p_squeeze:
+    max_balls_left: 60
+    min_rrr_minus_crr: 1.5
+    min_rrr: 10.0
+  p_collapse:
+    early_balls: 36
+    early_wickets: 3
+    mid_balls: 72
+    mid_wickets: 5
+  p_death:
+    min_over: 16
+    wp_center_diff: 0.25
+
+adjustments:
+  ridge_alpha_grid: [0.1, 1.0, 10.0, 100.0, 1000.0]
+  li_bins: 8
+
+ratings:
+  composite_weights:
+    level: 0.60
+    resilience: 0.20
+    consistency: 0.20
+  baseline_li_cutoff: 0.75
+  conservative_k: 1.0
+  recency_half_life_years: 2.0
+  min_match_pressure_balls_batter: 6
+  min_match_pressure_balls_bowler: 6
+
+eligibility:
+  batters:
+    min_balls_faced: 250
+    min_high_pressure_balls: 50
+    min_matches: 15
+    active_year_min: 2025
+  bowlers:
+    min_legal_balls: 300
+    min_high_pressure_balls: 60
+    min_matches: 15
+    active_year_min: 2025
+
+validation:
+  split_half_reps: 200
+  bootstrap_reps: 500
