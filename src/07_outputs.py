@@ -59,7 +59,7 @@ def generate_final_outputs(config):
         3647: "Middle-overs anchor under chase and collapse pressure (Pressure SR 167.8); +0.233 RV/ball resilience vs baseline; 68.1% match hit rate under pressure; 69.0% P(Top-10).",
         6396: "Death-overs boundary hitter (Pressure SR 186.3 across 333 pressure balls); +0.172 RV/ball resilience; 70.3% match hit rate under pressure; 59.2% P(Top-10).",
         6931: "Top-order anchor (Pressure SR 143.8 across 567 pressure balls); highest match hit rate in pool (80.9%); +0.215 RV/ball resilience; 48.4% P(Top-10).",
-        768: "Top-order batter (Pressure SR 171.5); +0.229 RV/ball resilience vs baseline; ranks top-15 across 3 alternate pressure definitions; 50.0% P(Top-10).",
+        768: "Top-order batter (Pressure SR 171.5 across 231 pressure balls); +0.229 RV/ball resilience vs baseline; ranks top-15 across 3 alternate pressure definitions; 50.0% P(Top-10).",
         1699: "Highest volume exposure (594 pressure balls, 2,659 total balls faced); maintains +0.263 posterior RV/ball level and 174.0 Pressure SR; 24.4% P(Top-10).",
         6280: "Middle-to-death overs hitter (Pressure SR 156.5 across 162 pressure balls); +0.150 RV/ball resilience; ranks top-15 across 3 alternate pressure definitions; 47.4% P(Top-10).",
         4260: "Death-overs boundary hitter (Pressure SR 184.4 across 317 pressure balls); +0.101 RV/ball resilience; ranks top-15 across 2 alternate pressure definitions; 38.2% P(Top-10)."
@@ -148,7 +148,7 @@ def generate_final_outputs(config):
         f.write("\n" + "=" * 70 + "\n")
         f.write("DROPDOWN AMBIGUITY SAFETY NOTE:\n")
         f.write("There are duplicate names in the dataset. For Rank 2 Bowler 'Rashid Khan', ensure\n")
-        f.write("selecting the Afghanistan/Gujarat Titans superstar (player_id 4722).\n")
+        f.write("selecting the Afghanistan/Gujarat Titans leg-spinner (player_id 4722).\n")
         f.write("=" * 70 + "\n")
 
     shutil.copyfile(dropdown_path, "dropdown_picks.txt")

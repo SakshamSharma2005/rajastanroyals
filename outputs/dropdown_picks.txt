@@ -32,5 +32,5 @@ Rank 10: Wanindu Hasaranga (Player ID: 4900, Overseas) [Current RR Squad]
 ======================================================================
 DROPDOWN AMBIGUITY SAFETY NOTE:
 There are duplicate names in the dataset. For Rank 2 Bowler 'Rashid Khan', ensure
-selecting the Afghanistan/Gujarat Titans superstar (player_id 4722).
+selecting the Afghanistan/Gujarat Titans leg-spinner (player_id 4722).
 ======================================================================

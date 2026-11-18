@@ -301,7 +301,7 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(Spacer(1, 2))
     story.append(build_callout(
         "<b>Selection Rule & Uncertainty Disclosure:</b> The official Top-10 ranking is determined strictly by the 3-component composite score "
-        "point estimate C_i (0.60 * z_level + 0.20 * z_resilience + 0.20 * z_consistency), which maximizes expected tournament win-equity E[C_i]. "
+        "point estimate C_i (0.60 * z_level + 0.20 * z_resilience + 0.20 * z_consistency), representing the highest expected composite score. "
         "Bootstrap P(Top-10) and alternate definition counts are evaluated as informational uncertainty diagnostics rather than hard truncation filters. "
         "Full audits against both a Strict Robustness Gate (P(Top-10) >= 0.50 OR >= 3 alternate finishes) and a Tuned Gate (P(Top-10) >= 0.40 OR >= 2 alternate finishes) "
         "are disclosed in Section 7.5.",
@@ -430,7 +430,7 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(Spacer(1, 4))
 
     story.append(Paragraph("<b>2.2 The Five Critical Data Nuances & Solutions:</b>", styles["SubSectionHeader"]))
-    story.append(Paragraph("<b>1. Bat-Runs-Only in 'runs' Column:</b> The raw `runs` field records exclusively off-the-bat runs. Extras are separately categorized in `extras_type` (`wide`, `Overstep`, `legbyes`, `byes`, `other`, `Penalty`) with integer category codes in `extras1_runs`. Exact per-delivery penalty runs are not stored in the feed, so penalty values are mapped via `config.yaml` (±3 runs/innings par). Total team runs per delivery are computed as `runs + mapped_extra_runs`.", styles["BulletText"]))
+    story.append(Paragraph("<b>1. Bat-Runs-Only & Missing Extras Values:</b> The raw `runs` field records exclusively off-the-bat runs. The run values for extras (wides, no-balls, byes, leg-byes, penalties) are completely absent from the raw feed, and were estimated at about ±3 runs per innings using `config.yaml` penalty mappings. Extra event types are stored in `extras_type` with integer category codes in `extras1_runs`. Total team runs per delivery are computed as `runs + mapped_extra_runs`.", styles["BulletText"]))
     story.append(Paragraph("<b>2. Extras Categorization & String Standards:</b> Extras are recorded across six distinct string labels. String matching is strictly standardized across `wide`, `Overstep`, `legbyes`, `byes`, `other`, and `Penalty`.", styles["BulletText"]))
     story.append(Paragraph("<b>3. Legal Delivery & Over Accounting:</b> Only non-wide, non-no-ball deliveries count toward the 6 legal balls per over (`legal = 1`). Across 29,968 non-terminal overs in the dataset, exactly 29,964 contain exactly 6 legal deliveries (a 99.99% legal over completion rate).", styles["BulletText"]))
     story.append(Paragraph("<b>4. Non-Striker Dismissals:</b> On run-outs involving the non-striker, the wicket cost is charged strictly to the dismissed batter rather than the striker facing the delivery.", styles["BulletText"]))
@@ -440,7 +440,7 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(build_callout(
         "<b>Critical Selection Note — Rashid Khan Disambiguation:</b> Two players named 'Rashid Khan' appear in the dataset: "
         "<b>player_id 4722</b> (Afghanistan international & Gujarat Titans leg-spinner) and <b>player_id 20172</b> (Nepal international player). "
-        "Our Rank 2 Bowler pick is unequivocally Afghanistan/GT superstar <b>ID 4722</b> (2,675 legal balls, 604 legal pressure balls, Pressure Economy 7.47).",
+        "Our Rank 2 Bowler pick is unequivocally Afghanistan/GT leg-spinner <b>ID 4722</b> (2,675 legal balls, 604 legal pressure balls, Pressure Economy 7.47).",
         styles,
         border_color="#C59B27"
     ))
@@ -790,7 +790,7 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
 
     story.append(Paragraph(
         "<b>Empirical Disclosure on Phase Fragility vs Continuous Leverage:</b><br/>"
-        "• <b>Continuous Leverage Variants:</b> Varying continuous LI cutoffs (P-LI >= 1.25, 1.50, 1.75, 2.00) swaps 40%–60% of the list (maintaining 40%–60% overlap, tau = 0.56–0.75). Shifting composite weights preserves 80%–100% overlap (tau = 0.90–0.96).<br/>"
+        "• <b>Continuous Leverage Variants:</b> Varying continuous LI cutoffs (P-LI >= 1.25, 1.50, 1.75, 2.00) maintains 40%–60% Top-10 overlap for batters and 30%–50% for bowlers (Kendall tau = 0.56–0.75). Shifting composite weights preserves 80%–100% overlap (tau = 0.90–0.96).<br/>"
         "• <b>Phase Sub-Regime Fragility:</b> In stark contrast, arbitrary situational definitions exhibit severe rank divergence: <b>P-Chase</b> yields 0.0 top-10 overlap for batters (tau = 0.28) and 0.1 for bowlers (tau = 0.31); <b>P-Collapse</b> yields 0.2 overlap (tau = 0.09 / 0.13); and <b>P-Death</b> yields 0.2 overlap (tau = 0.27 / 0.26).<br/>"
         "• <b>Methodological Takeaway:</b> Arbitrary phase silos fragment deliveries into tiny samples (e.g. death specialists face zero collapse balls), whereas continuous win-probability leverage weighting (LI = StDev(Delta WP)) evaluates every delivery by its true win-equity impact.",
         styles["CustomBody"]
@@ -821,7 +821,7 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(t_loco)
     story.append(Spacer(1, 2))
     story.append(Paragraph(
-        "<b>LOCO Takeaway:</b> Dropping individual seasons (IPL 2026 or IPL 2025) preserves 50%–70% Top-10 overlap and Kendall tau > 0.67, confirming that recommendations capture multi-year skill rather than isolated single-season form.",
+        "<b>LOCO Takeaway:</b> Dropping individual seasons (IPL 2026 or IPL 2025) preserves 40%–60% Top-10 overlap and Kendall tau > 0.67, confirming that recommendations capture multi-year skill rather than isolated single-season form.",
         styles["CustomBody"]
     ))
 
@@ -833,7 +833,7 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(Paragraph("7.5 Robustness Gate Audit & Uncertainty Disclosure", styles["SectionHeader"]))
     story.append(Paragraph(
         "<b>Selection Rule:</b> The primary Top-10 ranking is determined strictly by the 3-component composite score point estimate C_i "
-        "(0.60 * z_level + 0.20 * z_resilience + 0.20 * z_consistency), which maximizes expected tournament win equity E[C_i]. "
+        "(0.60 * z_level + 0.20 * z_resilience + 0.20 * z_consistency), representing the highest expected composite score. "
         "Bootstrap P(Top-10) and alternate definition counts are evaluated as informational uncertainty diagnostics rather than hard exclusion filters.<br/>"
         "• <b>Strict Robustness Gate:</b> Bootstrap P(Top-10) >= 0.50 OR Top-15 finish in >= 3 of the 5 distinct alternate pressure definitions.<br/>"
         "• <b>Tuned Robustness Gate:</b> Bootstrap P(Top-10) >= 0.40 OR Top-15 finish in >= 2 of the 5 distinct alternate pressure definitions.<br/>"
@@ -856,19 +856,19 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     ]]
 
     gate_assessments = {
-        50284: "Rank 1 point estimate (2.46); passes both gates (P=75.8%, 3 alts); top early/squeeze leverage execution.",
-        6281: "Passes strict gate (P=68.2%, 2 alts); high volume (509 pressure balls); +0.382 posterior RV/ball.",
+        50284: "Rank 1 point estimate (2.46); passes both gates (P=75.8%, 3 alts); top-ranked early/squeeze leverage execution (212.4 SR).",
+        6281: "Passes strict gate (P=68.2%, 2 alts); high volume (509 pressure balls); +0.382 posterior RV/ball; 176.8 SR.",
         7216: "Passes both gates (P=72.0%, 3 alts); +0.281 resilience vs baseline; 74.1% match hit rate under pressure.",
-        3647: "Passes strict gate (P=69.0%, 2 alts); tight rank interval [2, 29]; +0.233 resilience in chases/collapses.",
+        3647: "Passes strict gate (P=69.0%, 2 alts); +0.233 resilience in chases/collapses; 68.1% match hit rate.",
         6396: "Passes strict gate (P=59.2%, 1 alt); Pressure SR 186.3 across 333 pressure balls; +0.172 resilience.",
         6931: "Passes tuned gate (P=48.4%, 0 alts); 80.9% match hit rate under pressure; +0.215 resilience vs baseline.",
-        768: "Passes both gates (P=50.0%, 3 alts); high volume (776 pressure balls); +0.231 resilience vs baseline.",
-        1699: "Rank 8 point estimate (1.64); fails gates (P=24.4%, 0 alts); wide CI reflects situational leverage variance.",
-        6280: "Passes strict gate (3 alts, P=47.4%); +0.157 resilience across 162 pressure balls; explosive middle/death hitter.",
+        768: "Passes both gates (P=50.0%, 3 alts); 231 pressure balls (776 total balls); +0.231 resilience vs baseline.",
+        1699: "Rank 8 point estimate (1.64); +0.263 post RV/b across 594 pressure balls; fails gates (P=24.4%, 0 alts) due to close rank cluster.",
+        6280: "Passes strict gate (3 alts, P=47.4%); +0.157 resilience across 162 pressure balls; 156.5 Pressure SR.",
         4260: "Passes tuned gate (2 alts, P=38.2%); Pressure SR 184.4 across 317 pressure balls; +0.112 resilience.",
         781: "Passes both gates (P=81.8%, 4 alts); 7.02 economy across 416 legal pressure balls; +0.204 posterior RV/ball.",
         4722: "Passes tuned gate (P=49.8% ~ 50%, 1 alt); fails strict by 0.2%; 604 legal pressure balls; ID 4722 (AFG/GT).",
-        6256: "Passes tuned gate (P=49.8% ~ 50%, 2 alts); fails strict by 0.2%; 520 legal pressure balls; +0.173 posterior RV/ball.",
+        6256: "Passes tuned gate (P=49.8% ~ 50%, 2 alts); fails strict by 0.2%; 520 legal pressure balls; +0.181 posterior RV/ball.",
         2490: "Passes both gates (P=58.6%, 3 alts); 7.07 economy across 298 legal pressure balls; +0.171 posterior RV/ball.",
         4219: "Rank 5 point estimate (1.73); fails gates (P=35.2%, 1 alt); 7.10 economy across 289 balls; +0.107 resilience.",
         2382: "Passes tuned gate (P=47.2%, 2 alts); 6.26 economy; low-sample pick (68 legal pressure balls); wide CI.",
@@ -914,12 +914,13 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(t_gate)
     story.append(Spacer(1, 3))
     story.append(build_callout(
-        "<b>Objective Statistical Assessment of Uncertainty Diagnostics:</b><br/>"
-        "In decision theory, point estimates represent the unbiased expected value E[C_i] that maximizes tournament win equity. "
-        "Strict gates favor high-sample, lower-variance anchors (e.g. Shreyas, Narine, Nawaz). In contrast, players with narrower situational exposure "
-        "(Suryakumar, Chahal, Klaasen, Santner, Hasaranga) naturally produce lower P(Top-10) values (23%–38%) and wider confidence bounds "
-        "due to posterior variance sigma_post^2 across specialized match sub-windows. While a risk-averse franchise may prefer gate-passing alternatives, "
-        "discarding them entirely based solely on interval width penalizes specialized high-leverage impact.",
+        "<b>Statistical Interpretation of Uncertainty Diagnostics & Close Ranks:</b><br/>"
+        "The ranking selects players strictly with the highest expected composite score. "
+        "Ranks 8–12 have close composite scores, so tenth place cannot be separated statistically from the next few players. "
+        "A P(Top-10) below 40% reflects this ranking-tie density: composite scores for roughly ranks 8–20 sit within bootstrap noise of each other "
+        "(e.g. Suryakumar at 1.64 against Tilak Varma at 1.33; Mayank and Hasaranga at 1.46 against Hazlewood and Cummins at 1.42). "
+        "Notably, Jasprit Bumrah is identified as the toughest bowler in the Ridge opposition model (-0.211 runs/ball), yet ranks 13th in the composite (1.31) "
+        "because ranks 9–15 form a tight statistical cluster separated by just 0.15 composite points, and the composite incorporates resilience and match consistency alongside pressure level.",
         styles
     ))
 
@@ -976,14 +977,14 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(Paragraph("<b>Strategic Analytical Profiles & RR Tactical Fit (Batters):</b>", styles["CustomBodyBold"]))
     
     bat_fits = {
-        50284: "Has RR in team history. Premier early/squeeze leverage executor; 212.4 SR vs 223.1 baseline yields +0.139 resilience after context adjustments; high franchise retention equity.",
+        50284: "Has RR in team history. Top-ranked early/squeeze leverage executor; 212.4 SR vs 223.1 baseline yields +0.139 resilience after context adjustments.",
         6281: "LH powerplay aggressor converting early match equity (+0.382 post RV/b); passes strict gate (68.2% P(Top-10)); top-order auction target.",
-        7216: "Aggressive opener elevating output under pressure (+0.281 resilience, highest among top batters); 74.1% match hit rate; passes both gates (72.0% P(Top-10)).",
-        3647: "Middle-overs anchor under chase and collapse pressure (+0.233 resilience); tightest rank interval [2, 29] across pool; 69.0% P(Top-10).",
+        7216: "Aggressive opener elevating output under pressure (+0.281 resilience, highest among top batters); 74.1% match hit rate under pressure; passes both gates (72.0% P(Top-10)).",
+        3647: "Middle-overs anchor under chase and collapse pressure (+0.233 resilience); 68.1% match hit rate under pressure; 69.0% P(Top-10).",
         6396: "Death-overs finisher (186.3 SR across 333 pressure balls, 70.3% hit rate); high situational boundary equity; passes strict gate (59.2% P(Top-10)).",
         6931: "Top-order anchor with highest match hit rate in pool (80.9%); +0.215 resilience; dependable chase stabilizer; passes tuned gate (48.4% P(Top-10)).",
-        768: "High-volume top-order accumulator (776 pressure balls); +0.231 resilience; qualifies across 3 alternate definitions (50.0% P(Top-10)).",
-        1699: "Middle-overs shotmaker (594 pressure balls); maintains +0.252 post RV/b level; wider CI reflects situational leverage dispersion (24.4% P(Top-10)).",
+        768: "Top-order batter (171.5 Pressure SR across 231 pressure balls, 776 total balls); +0.231 resilience; qualifies across 3 alternate definitions (50.0% P(Top-10)).",
+        1699: "Middle-overs batter (594 pressure balls); maintains +0.263 post RV/b level; ranks 8–12 sit in a close statistical cluster (24.4% P(Top-10)).",
         6280: "Middle-to-death overs hitter (156.5 SR across 162 pressure balls); +0.157 resilience; finishes top-15 in 3 alternate definitions (47.4% P(Top-10)).",
         4260: "Death-overs specialist (184.4 SR across 317 pressure balls); +0.112 resilience; finishes top-15 in 2 alternate definitions (38.2% P(Top-10))."
     }
@@ -1063,15 +1064,15 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(Paragraph("<b>Strategic Analytical Profiles & RR Tactical Fit (Bowlers):</b>", styles["CustomBodyBold"]))
     
     bowl_fits = {
-        781: "Benchmark defensive choke spinner (7.02 economy across 416 legal pressure balls); highest stability in pool (81.8% P(Top-10)); passes both gates.",
+        781: "Defensive spin restrictor (7.02 economy across 416 legal pressure balls); highest stability in pool (81.8% P(Top-10)); passes both gates.",
         4722: "High-volume choke bowler (604 legal pressure balls, 7.47 econ); +0.189 post RV/b; passes tuned gate (49.8% P(Top-10)). Crucial: ID 4722 (AFG/GT), distinct from ID 20172 (Nepal).",
-        6256: "Premier Indian mystery spinner (520 legal pressure balls, 7.81 econ); consistent middle-overs dot-ball pressure; +0.173 post RV/b; passes tuned gate (49.8% P(Top-10)).",
+        6256: "Indian mystery spinner (520 legal pressure balls, 7.81 econ); consistent middle-overs dot-ball pressure; +0.181 post RV/b; passes tuned gate (49.8% P(Top-10)).",
         2490: "Defensive left-arm orthodox spinner (7.07 economy across 298 legal pressure balls); finishes top-15 in 3 alternate definitions (58.6% P(Top-10)); passes both gates.",
         4219: "Left-arm spin with powerplay/middle control (7.10 economy across 289 balls); +0.107 resilience; disciplined situational utility (35.2% P(Top-10)).",
         2382: "[Low-sample pick: wide CI] Pace all-rounder (6.26 economy across 68 legal pressure balls); +0.103 post RV/b; passes tuned gate (47.2% P(Top-10)).",
         1612: "Has RR in team history. 8.82 economy heavily offset by 47 wickets in 602 balls at 12.81 SR (+0.27 wkt RV/b dismissal value credit); passes tuned gate (22.8% P(Top-10)).",
         4101: "Disciplined finger spinner (6.94 economy across 370 legal pressure balls); +0.127 post RV/b; 65.3% match hit rate under pressure (30.4% P(Top-10)).",
-        27960: "[Low-sample pick: wide CI] Express pace enforcer (7.28 economy across 108 legal pressure balls, 21 matches); passes strict gate via 3 alts (38.0% P(Top-10)).",
+        27960: "[Low-sample pick: wide CI] Pace bowler (7.28 economy across 108 legal pressure balls, 21 matches); passes strict gate via 3 alts (38.0% P(Top-10)).",
         4900: "Has RR in team history. Attacking wrist spinner (8.61 economy across 455 legal pressure balls); strong wicket threat producing +0.152 post RV/b (24.6% P(Top-10))."
     }
 
@@ -1109,7 +1110,7 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
         "We disclose three fundamental limitations of this modeling framework:",
         styles["CustomBody"]
     ))
-    story.append(Paragraph("<b>1. Extras Feed Mapping & Resolution:</b> The raw delivery feed categorizes extras in `extras_type` with integer codes in `extras1_runs`, but does not record exact per-delivery penalty run values. These were standardized and mapped via `config.yaml` (±3 runs/innings). While the zero-sum DP run expectancy table accounts for empirical extra rates, exact per-ball run allocations remain an approximation.", styles["BulletText"]))
+    story.append(Paragraph("<b>1. Extras Feed Mapping & Resolution:</b> The raw delivery feed categorizes extras in `extras_type` with integer codes in `extras1_runs`, but does not record exact per-delivery penalty run values. The values for extras (wides, no-balls, byes, leg-byes, penalties) are absent from the raw feed, and were estimated at about ±3 runs per innings. While the zero-sum DP run expectancy table accounts for empirical extra rates, exact per-ball run allocations remain an approximation.", styles["BulletText"]))
     story.append(Paragraph("<b>2. Environmental & Pitch Covariates:</b> Unmeasured match factors such as dew, deteriorating evening pitch conditions, and exact boundary dimensions are captured only through venue-level fixed effects.", styles["BulletText"]))
     story.append(Paragraph("<b>3. Low Bowler Clutch Persistence:</b> As proven in Section 7.1, bowler clutch metrics exhibit modest cross-half correlation (r = 0.09–0.16 with wide standard error). A bowler's pressure rating is naturally noisier than a batter's, and rankings should be interpreted with appropriate confidence bounds.", styles["BulletText"]))
 
@@ -1118,14 +1119,13 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     story.append(Paragraph(
         "In compliance with our pre-declared uniform eligibility criteria (Bowlers: >= 300 legal balls, >= 60 legal pressure balls), "
         "high-potential bowlers with small pressure samples were filtered out of the primary recommendation list to protect against volatility. "
-        "However, because their raw metrics show extreme high-leverage execution, they are tracked in this <b>Emerging Watchlist</b> for scouting follow-up:",
+        "However, because their raw metrics show strong high-leverage execution, they are tracked in this <b>Emerging Watchlist</b> for scouting follow-up:",
         styles["CustomBody"]
     ))
 
     watchlist_data = [
         [Paragraph("Player Name (ID)", styles["TableHead"]), Paragraph("Nat.", styles["TableHead"]), Paragraph("Legal Balls", styles["TableHead"]), Paragraph("Press Legal", styles["TableHead"]), Paragraph("Press Econ", styles["TableHead"]), Paragraph("Raw RV/ball", styles["TableHead"]), Paragraph("90% CI Width", styles["TableHead"]), Paragraph("Scouting Rationale & Monitoring Reason", styles["TableHead"])],
-        [Paragraph("<b>Akash Madhwal</b><br/>ID: 8177", styles["TableCellBold"]), Paragraph("Indian", styles["TableCellCenter"]), Paragraph("352", styles["TableCellCenter"]), Paragraph("55", styles["TableCellCenter"]), Paragraph("6.76", styles["TableCellCenter"]), Paragraph("+0.41", styles["TableCellCenter"]), Paragraph("[0.39, 3.42] (3.03)", styles["TableCellCenter"]), Paragraph("Elite death-overs yorker execution; 55 legal pressure balls (just 5 shy of 60 cutoff); wide CI reflects sample; prime low-cost scouting target.", styles["TableCell"])],
-        [Paragraph("<b>Sufiyan Muqeem</b><br/>ID: 34485", styles["TableCellBold"]), Paragraph("Overseas", styles["TableCellCenter"]), Paragraph("518", styles["TableCellCenter"]), Paragraph("146", styles["TableCellCenter"]), Paragraph("6.45", styles["TableCellCenter"]), Paragraph("+0.28", styles["TableCellCenter"]), Paragraph("[0.44, 2.72] (2.28)", styles["TableCellCenter"]), Paragraph("Left-arm wrist spinner; finishes top-15 across 4 alternate pressure definitions; elite economy under squeeze pressure.", styles["TableCell"])]
+        [Paragraph("<b>Akash Madhwal</b><br/>ID: 8177", styles["TableCellBold"]), Paragraph("Indian", styles["TableCellCenter"]), Paragraph("352", styles["TableCellCenter"]), Paragraph("55", styles["TableCellCenter"]), Paragraph("6.76", styles["TableCellCenter"]), Paragraph("+0.41", styles["TableCellCenter"]), Paragraph("[0.39, 3.42] (3.03)", styles["TableCellCenter"]), Paragraph("Death-overs yorker execution; 55 legal pressure balls (just 5 shy of 60 cutoff); wide CI reflects sample size; prime low-cost scouting target.", styles["TableCell"])]
     ]
     t_watch = Table(watchlist_data, colWidths=[85, 38, 42, 42, 45, 48, 70, 134])
     t_watch.setStyle(TableStyle([
@@ -1133,11 +1133,11 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
         ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.HexColor("#F8FAFC"), colors.white]),
         ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#CBD5E1")),
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-        ("TOPPADDING", (0, 0), (-1, -1), 1.5),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 1.5),
+        ("TOPPADDING", (0, 0), (-1, -1), 2),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
     ]))
     story.append(t_watch)
-    story.append(Spacer(1, 3))
+    story.append(Spacer(1, 4))
 
     story.append(Paragraph("11. Reproducibility & Pipeline Audit Checklist", styles["SectionHeader"]))
     story.append(Paragraph(
@@ -1152,7 +1152,7 @@ def build_pdf_report(pdf_filename="outputs/methodology_report.pdf"):
     # Summary graphic at end
     fig_sum = "outputs/figures/top10_summary_bars.png"
     if os.path.exists(fig_sum):
-        story.append(Spacer(1, 2))
+        story.append(Spacer(1, 3))
         story.append(Image(fig_sum, width=6.5*inch, height=1.7*inch))
         story.append(Paragraph("Figure 7: Executive Summary: Top 10 Batters and Bowlers Under Pressure (2022–2026).", styles["FigureCaption"]))
 
